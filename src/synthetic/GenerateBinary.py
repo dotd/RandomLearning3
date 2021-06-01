@@ -24,6 +24,7 @@ class GenerateBinary:
         self.labels = self.random.choice(range(self.num_centers), size=(self.num_samples,))
         self.labels1hot = np.zeros(shape=(self.num_samples, self.num_centers))
         self.labels1hot[np.arange(self.num_samples), self.labels] = 1
+        self.labels_pm = self.labels * 2 - 1
         self.data = np.dot(self.labels1hot, self.centers)
         self.noise = self.random.choice([-1, 1], size=self.data.shape, p=[p_noise, 1 - p_noise])
         self.data = self.data * self.noise
